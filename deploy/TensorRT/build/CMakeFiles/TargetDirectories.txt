@@ -1,0 +1,3 @@
+/workspace/deploy/TensorRT/build/CMakeFiles/edit_cache.dir
+/workspace/deploy/TensorRT/build/CMakeFiles/rebuild_cache.dir
+/workspace/deploy/TensorRT/build/CMakeFiles/yolov6.dir
