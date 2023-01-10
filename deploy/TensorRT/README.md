@@ -1,15 +1,13 @@
-# YOLOv6-TensorRT in C++
+# Mobile+anchor-free 训练模型使用TensorRT量化加速
 
-## Dependencies
-- TensorRT-8.2.3.0
-- OpenCV-4.1.0
+## 环境配置需求
+- TensorRT - 8.2.3.0 及以上版本
+- OpenCV - 4.1.0 及以上版本
 
+## Step 1: 转换训练模型为ONNX模型
+进入文件夹 ONNX 使用 export_onnx.py 按照以下命令将 .pt 模型转化为 .onnx 模型 \
+**需要注意的是:目前不支持使用 --end2end 转换带有NMS功能的onnx模型**
 
-
-## Step 1: Get onnx model
-
-Follow the file [ONNX README](../../tools/quantization/tensorrt/post_training/README.md) to convert the pt mdoel to onnx `yolov6n.onnx`.
-**Now do't support end2end onnx model which include the nms plugin**
 ```shell
 python ./deploy/ONNX/export_onnx.py \
     --weights yolov6n.pt \
@@ -17,9 +15,8 @@ python ./deploy/ONNX/export_onnx.py \
     --batch 1
 ```
 
-## Step 2: Prepare serialized engine file
-
-Follow the file [post training README](../../tools/quantization/tensorrt/post_training/README.md) to convert and save the serialized engine file `yolov6.engine`.
+## Step 2: 转换ONNX模型为TensorRT engine 模型
+进入文件夹 TensorRT 使用 onnx_to_tensorrt.py 按照以下命令将 .onnx 模型转化为 .trt engine 模型
 
 ```shell
 python3 onnx_to_tensorrt.py --fp16 --int8 -v \
@@ -31,14 +28,10 @@ python3 onnx_to_tensorrt.py --fp16 --int8 -v \
         --onnx ${ONNX_MODEL} -o ${OUTPUT}
 ```
 
-## Step 3: build the demo
-
-Please follow the [TensorRT Installation Guide](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html) to install TensorRT.
-
-And you should set the TensorRT path and CUDA path in CMakeLists.txt.
-
-If you train your custom dataset, you may need to modify the value of `num_class, image width height, and class name`.
-
+## Step 3: 创建demo：
+如果没有安装TensorRT，请按照[TensorRT Installation Guide](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html)安装TensorRT \
+同时，需要在CMakeLists.txt中配置TensorRT的路径和CUDA的路径 \
+如果不是使用的COCO数据集，请在yolov6.cpp文件中，根据训练集修改参数:种类数量，图片高宽以及种类名称，下面为详细信息:
 ```c++
 const int num_class = 80;
 static const int INPUT_W = 640;
@@ -55,27 +48,18 @@ static const char* class_names[] = {
         "hair drier", "toothbrush"
     };
 ```
-
-build the demo:
+如果已经完成以上步骤，根据下面步骤创建demo:
 
 ```shell
+cd ${destination folder}
 mkdir build
 cd build
 cmake ..
 make
 ```
-
-Then run the demo:
-
+创建demo之后，按照下面命令测试demo:
 ```shell
 ./yolov6 -e ../you.engine -s image_source -o ../your output file
 ```
-# Testing on image 
-You can do testing on images using .trt weights, just give path of image directory & its annotation path
+可以得到测试图片，推理时间和平均mAp值等相关结果.
 
-```
-python3 deploy/TensorRT/eval_yolo_trt.py -v -m model.trt \
---imgs-dir /workdir/datasets/coco/images/val2017 \
---annotations /workdir/datasets/coco/annotations/instances_val2017.json \
---conf-thres 0.40 --iou-thres 0.45
-```
