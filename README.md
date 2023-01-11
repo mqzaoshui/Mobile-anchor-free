@@ -1,4 +1,4 @@
-# Mobile && Anchor-free
+# Mobile && Anchor-free  by M.Q
 
 ## 简介
 本项目基于Yolov6和Mobilevit架构\
