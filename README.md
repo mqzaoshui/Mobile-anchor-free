@@ -151,12 +151,32 @@ docker pull maoqijinwanzao3/pytorch:mobilevit-yolov6-py3.8-torch11.0-cu113
 ### 实验结果(部分)
 
 #### mAp值对比
-![image](assets/Mobile_mAp.png)
+<div align="center">
+    <a href="./">
+        <img src="assets/Mobile_mAp.png" width="40%"/>
+    </a>
+</div>
+
 #### TRT量化推理对比
-![image](assets/Mobile_TRT.png)
+<div align="center">
+    <a href="./">
+        <img src="assets/Mobile_TRT.png" width="40%"/>
+    </a>
+</div>
+
 #### 推理结果图片(部分)
-![image](assets/v6s-out-test003.jpg)\
-![image](assets/netv2-out-test003.jpg)\
-![image](assets/xs-out-test003.jpg)\
-![image](assets/v2-xs-out-test003.jpg)\
-![image](assets/v2-s-out-test003.jpg)
+<center> 
+<figure calss="third">
+    <img src="assets/v6s-out-test003.jpg" width = "30%"/>
+    <img src="assets/netv2-out-test003.jpg" width = "30%"/>
+    <img src="assets/xs-out-test003.jpg" width = "30%"/>
+</figure>
+</center>
+<center> 
+<figure calss="third">
+    <img src="assets/xxs-out-test003.jpg" width = "30%"/>
+    <img src="assets/v2-xs-out-test003.jpg" width = "30%"/>
+    <img src="assets/v2-s-out-test003.jpg" width = "30%"/>
+</figure>
+</center>
+
