@@ -104,15 +104,19 @@ python -m torch.distributed.launch --nproc_per_node 8 tools/train.py \
 <details>
 <summary>重新加载训练</summary>
 如果训练进程被意外中断，可以参照如下步骤重新加载训练
+
 ```shell
 # multi GPU training.
 python -m torch.distributed.launch --nproc_per_node 8 tools/train.py --resume
 ```
+
 也可以选择一个指定路径来重新加载训练
+
 ```shell
 # 将 /path/to/your/checkpoint/path 替换成所需重新训练的文件路径即可.
 --resume /path/to/your/checkpoint/path
 ```
+
 </details>
 
 ### 测试模块
