@@ -2,7 +2,7 @@
 
 ## 简介
 本项目基于Yolov6和Mobilevit架构\
-在此感谢两位作者(https://github.com/meituan/YOLOv6)和(https://github.com/apple/ml-cvnets)\
+在此感谢两位作者(https://github.com/meituan/YOLOv6) 和 (https://github.com/apple/ml-cvnets) \
 将Transformer模型的mobilenet网络连接到Yolov6模型的anchor-free的头部网络\
 期望将Yolov6的backbone 部分的'Repvgg'替换成'MobileNet'和'Mobilevit'等小模型，以提高精度和推理速度.
 
@@ -169,18 +169,17 @@ docker pull maoqijinwanzao3/pytorch:mobilevit-yolov6-py3.8-torch11.0-cu113
 </div>
 
 #### 推理结果图片(部分)
-<center> 
-<figure calss="third">
-    <img src="assets/v6s-out-test003.jpg" width = "30%"/>
-    <img src="assets/netv2-out-test003.jpg" width = "30%"/>
-    <img src="assets/xs-out-test003.jpg" width = "30%"/>
-</figure>
-</center>
-<center> 
-<figure calss="third">
-    <img src="assets/xxs-out-test003.jpg" width = "30%"/>
-    <img src="assets/v2-xs-out-test003.jpg" width = "30%"/>
-    <img src="assets/v2-s-out-test003.jpg" width = "30%"/>
-</figure>
-</center>
-
+<div align="center">
+    <a href="./">
+        <img src="assets/v6s-out-test003.jpg" width="30%"/>
+	<img src="assets/netv2-out-test003.jpg" width = "30%"/>
+        <img src="assets/xs-out-test003.jpg" width = "30%"/>
+    </a>
+</div>
+<div align="center">
+    <a href="./">
+        <img src="assets/xxs-out-test003.jpg" width = "30%"/>
+        <img src="assets/v2-xs-out-test003.jpg" width = "30%"/>
+        <img src="assets/v2-s-out-test003.jpg" width = "30%"/>
+    </a>
+</div>
